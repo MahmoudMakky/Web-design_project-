@@ -1695,7 +1695,6 @@ body {
         max-width: 300px;
     }
 
-    /*Course Swiper This is a problem that i cannot find a solution for it that when you minimize to this size all the course container will disappear */  
         .courses__container {
             width: 100%;
             padding: 1.5rem 1rem;
