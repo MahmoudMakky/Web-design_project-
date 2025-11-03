@@ -13,7 +13,7 @@ import { ExploreSystem } from "./Modules/ExploreSystem.js";
 let courses = courseList;
 
 // Functions
-function createCourseFilterItem({ title, category ,price, duration }) {
+function createCourseFilterItem({ title, category , price, duration, id }) {
     // wrapper div
     const div = document.createElement("div");
     div.className = "course-item-filter";
@@ -41,6 +41,9 @@ function createCourseFilterItem({ title, category ,price, duration }) {
     // button
     const button = document.createElement("button");
     button.textContent = "Visit Now";
+    button.addEventListener("click", () => {
+        window.location.href = `coursepage.html?id=${id}`;
+    })
 
     // append children
     div.appendChild(img);
@@ -52,20 +55,19 @@ function createCourseFilterItem({ title, category ,price, duration }) {
     return div;
 }
 
-function renderFilteredCourses(courses, currentPage, limitPerPage){
+function renderFilteredCourses(courses, currentPage, limitPerPage){ // Add price, duration (after tony add it to admin input)
     let paginationInfo = ExploreSystem.pagination(courses, currentPage, limitPerPage);
 
     const filter = document.querySelector(".courses-container-filter");
 
     filter.innerHTML = "";
-    console.log(courses);
-    console.log(filter);
     for (const course of paginationInfo.data){
     const courseInfo = {
         category: course.category,
         title: course.title,
         price: "Free",
-        duration: "2 Weeks"
+        duration: "2 Weeks",
+        id: course.id
     };
 
     const divElement = createCourseFilterItem(courseInfo);

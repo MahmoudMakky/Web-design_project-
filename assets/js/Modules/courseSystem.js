@@ -6,7 +6,7 @@ const STORAGE_KEY_COURSES = "cp_courses_v1";
 
 export let courseList = loadCourses() || [
   {
-    id: 101,
+    id: 1,
     title: "Multimedia Basics",
     description: "Intro to multimedia",
     instructor: "Jana",
@@ -14,10 +14,10 @@ export let courseList = loadCourses() || [
     categories: ["multimedia", "basics"], // replaced tags → categories
     visits: 0,
     price: 200,
-    duration: "3 weeks"
+    duration: "3 Weeks"
   },
   {
-    id: 102,
+    id: 2,
     title: "Graphic Design",
     description: "Basics of GD",
     instructor: "Sama",
@@ -25,7 +25,7 @@ export let courseList = loadCourses() || [
     categories: ["graphic", "design"], 
     visits: 0,
     price: 250,
-    duration: "4 weeks"
+    duration: "4 Weeks"
   }
 ];
 

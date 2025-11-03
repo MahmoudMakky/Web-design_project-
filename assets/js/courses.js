@@ -12,7 +12,7 @@ import { ExploreSystem } from "./Modules/ExploreSystem.js";
 let courses = courseList;
 
 // Functions
-function createCourseItem({category, title, description}) {
+function createCourseItem({category, title, description, id}) {
     // Create article
     const article = document.createElement("article");
     article.className = "course-item swiper-slide";
@@ -35,7 +35,7 @@ function createCourseItem({category, title, description}) {
 
     // Button
     const a = document.createElement("a");
-    a.href = "#";
+    a.href = `coursepage.html?id=${id}`;
     a.className = "button";
     a.textContent = "Enroll Now";
 
@@ -54,6 +54,7 @@ function renderCourses(courses){
         category: course.category,
         title: course.title,
         description: course.description,
+        id: course.id
     };
 
     const articleElement = createCourseItem(courseInfo);
