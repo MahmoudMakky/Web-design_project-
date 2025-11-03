@@ -1,12 +1,12 @@
 import { getCourse } from "./courseSystem.js";
 export const CourseInformation = {
-  videosURL: "assets/video/dataStructure/",
+  videosURL: "assets/video/dataStructure/mp4/",
   courseVideos: [ // key: courseid, value: array of videos URL --- But since no backend i will temporary set all courses to view same vids as an array
-    ["Arrays.mkv", "Chapter 1: Arrays in Data Structure"],
-    ["BackTracking.mkv", "Chapter 2: Backtracking Algorithm"],
-    ["Heap.mkv", "Chapter 3: Heap Sort"],
-    ["Pointers.mkv", "Chapter 4: Pointers"],
-    ["Stack.mkv", "Chapter 5: What is a Stack?"]
+    ["Arrays.mp4", "Chapter 1: Arrays in Data Structure"],
+    ["BackTracking.mp4", "Chapter 2: Backtracking Algorithm"],
+    ["Heap.mp4", "Chapter 3: Heap Sort"],
+    ["Pointers.mp4", "Chapter 4: Pointers"],
+    ["Stack.mp4", "Chapter 5: What is a Stack?"]
   ], 
 
   /*
