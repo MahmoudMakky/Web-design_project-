@@ -63,7 +63,7 @@ function renderCourses(courses){
 }
 }
 
-renderCourses(ExploreSystem.getTrending(courses));
+renderCourses(ExploreSystem.getTrending(courses.filter(c => c.status == `Approved`)));
 
 // Initialize Swiper
 const coursesSwiper = new Swiper(".courses__swiper", {

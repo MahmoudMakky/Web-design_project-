@@ -51,7 +51,10 @@ export const ExploreSystem = {
     return courses.filter(course => {
       return Object.entries(criteria).every(([key, value]) => {
         if (key === "minRating") return course.rating >= value;
+        if (key === "minPrice") return course.price > value;
         if (key === "maxPrice") return course.price <= value;
+        if (key === "minDuration") return course.duration > value;
+        if (key === "maxDuration") return course.duration <= value;
         return course[key] === value;
       });
     });

@@ -54,9 +54,9 @@ function createCourseFilterItem({ title, category , price, duration, id }) {
 
     return div;
 }
-
 function renderFilteredCourses(courses, currentPage, limitPerPage){ // Add price, duration (after tony add it to admin input)
-    let paginationInfo = ExploreSystem.pagination(courses, currentPage, limitPerPage);
+    let approvedCourses = courses.filter(course => course.status === "Approved");
+    let paginationInfo = ExploreSystem.pagination(approvedCourses, currentPage, limitPerPage);
 
     const filter = document.querySelector(".courses-container-filter");
 
@@ -65,8 +65,8 @@ function renderFilteredCourses(courses, currentPage, limitPerPage){ // Add price
     const courseInfo = {
         category: course.category,
         title: course.title,
-        price: "Free",
-        duration: "2 Weeks",
+        price: `${course.price}$`,
+        duration: `${course.duration} Weeks`,
         id: course.id
     };
 
@@ -92,8 +92,26 @@ document.getElementById('applyFilter').addEventListener('click', () => {
     // Filteration
     const criteria = {};
     if (category !== "all") criteria.category = category;
-    if (price    !== "all") criteria.price    = price;
-    if (duration !== "all") criteria.duration = duration;
+    if (price    !== "all") {
+        if (price[0] === 'u'){
+            criteria.maxPrice = parseInt(price.substring(1));
+        }else if(price[0] === 'g'){
+            criteria.minPrice = parseInt(price.substring(1));
+        }
+    };
+    if (duration !== "all"){
+        switch(duration){
+            case "short":
+                criteria.maxDuration = 2;
+                break;
+            case "medium":
+                criteria.maxDuration = 8;
+                break;
+            case "long":
+                criteria.minDuration = 8;
+                break;
+        }
+    }
 
     const filteredCourses = ExploreSystem.filterCourses(courses, criteria);
     renderFilteredCourses(filteredCourses, currentPage, limitPerPage);
