@@ -38,7 +38,7 @@ const saveFeedbackData = (data) => {
 export const CourseFeedback = {
   /**
    * Add new feedback to course
-   * @param {number} courseId
+   * @param {string} courseId
    * @param {string} userId
    * @param {string} comment
    * @param {number} stars
@@ -46,7 +46,7 @@ export const CourseFeedback = {
    */
   addFeedback(courseId, userId, comment, stars) {
     // Verify course exists in course system
-    const course = getCourse(courseId);
+    const course = getCourse(Number(courseId));
     if (!course) {
       return false;
     }
@@ -55,6 +55,7 @@ export const CourseFeedback = {
     let feedbackEntry = feedbackData.find(f => f.courseId === courseId);
 
     if (!feedbackEntry) {
+      console.log("test1.5")
       // If course doesn't exist in feedback data, create it with your structure
       feedbackEntry = { 
         courseId: courseId,
@@ -66,11 +67,13 @@ export const CourseFeedback = {
     // Check if user already submitted feedback so no duplicates
     const existingFeedback = feedbackEntry.feedbacks.find(f => f.userId === userId);
     if (existingFeedback) {
+      console.log("test2")
       return false;
     }
 
     // Validate stars rating
     if (stars < 0 || stars > 5) {
+      console.log("test3")
       return false;
     }
 
@@ -87,20 +90,22 @@ export const CourseFeedback = {
 
   /**
    * Get all feedback for course - linked with course system
-   * @param {number} courseId
+   * @param {string} courseId
    * @returns {Object[]}
    */
   getFeedback(courseId) {
     const feedbackData = initializeFeedbackData();
-    const feedbackEntry = feedbackData.find(f => f.courseId === courseId);
+    const feedbackEntry = feedbackData.find(f => f.courseId == courseId);
     return feedbackEntry?.feedbacks || [];
   },
 
   /**
    * Calculate average rating for course
-   * @param {number} courseId
+   * @param {string} courseId
    * @returns {number}
    */
+
+  // Change the totalstars (map it into a new arr + get the average rating of all valid)
   getAverageRating(courseId) {
     const feedbacks = this.getFeedback(courseId);
     if (feedbacks.length === 0) return 0;
@@ -111,7 +116,7 @@ export const CourseFeedback = {
 
   /**
    * Get feedback count for a course
-   * @param {number} courseId
+   * @param {string} courseId
    * @returns {number}
    */
   getFeedbackCount(courseId) {
@@ -120,7 +125,7 @@ export const CourseFeedback = {
 
   /**
    * Update existing feedback, probably important
-   * @param {number} courseId
+   * @param {string} courseId
    * @param {string} userId
    * @param {string} comment
    * @param {number} stars
@@ -128,7 +133,7 @@ export const CourseFeedback = {
    */
   updateFeedback(courseId, userId, comment, stars) {
     const feedbackData = initializeFeedbackData();
-    const feedbackEntry = feedbackData.find(f => f.courseId === courseId);
+    const feedbackEntry = feedbackData.findIndex(f => f.courseId === courseId);
     
     if (!feedbackEntry) {
       return false;
@@ -144,25 +149,32 @@ export const CourseFeedback = {
       return false;
     }
 
-    feedbackEntry.feedbacks[feedbackIndex] = { 
-      userId, 
-      comment: comment.trim(), 
-      stars: Number(stars.toFixed(1)) 
-    };
+    if(comment === null){
+      feedbackEntry.feedbacks[feedbackIndex] = { 
+        userId, 
+        stars: Number(stars.toFixed(1)) 
+      }
+    }
+    else{
+      feedbackEntry.feedbacks[feedbackIndex] = { 
+        userId, 
+        comment: comment.trim(), 
+        stars: Number(stars.toFixed(1)) 
+      };
+    }
     saveFeedbackData(feedbackData);
-    
     return true;
   },
 
   /**
    * Delete feedback
-   * @param {number} courseId
+   * @param {string} courseId
    * @param {string} userId
    * @returns {boolean}
    */
   deleteFeedback(courseId, userId) {
     const feedbackData = initializeFeedbackData();
-    const feedbackEntry = feedbackData.find(f => f.courseId === courseId);
+    const feedbackEntry = feedbackData.find(f => f.courseId === Number(courseId));
     
     if (!feedbackEntry) {
       return false;
@@ -172,12 +184,12 @@ export const CourseFeedback = {
     if (feedbackIndex === -1) {
       return false;
     }
-
+    
     feedbackEntry.feedbacks.splice(feedbackIndex, 1);
     
     // Remove feedback entry if no feedbacks left
     if (feedbackEntry.feedbacks.length === 0) {
-      const entryIndex = feedbackData.findIndex(f => f.courseId === courseId);
+      const entryIndex = feedbackData.find(f => f.courseId === courseId);
       feedbackData.splice(entryIndex, 1);
     }
     
@@ -185,14 +197,6 @@ export const CourseFeedback = {
     
     return true;
   },
-
-  /**
-   * Clear all feedback data
-   */
-  clearAllData() {
-    localStorage.removeItem(STORAGE_KEY_FEEDBACK);
-  },
-  
   /**
    * Auto-sync with course system (call when courses are added/deleted)
    */

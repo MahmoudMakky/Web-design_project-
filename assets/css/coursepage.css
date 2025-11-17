@@ -159,6 +159,7 @@ h4.course-title{
     margin-top: 4.5rem;
 }
 
+
 .course-sidebar h3 {
     font-size: 1.3rem;
     color: #1e1b4b;
@@ -190,8 +191,14 @@ h4.course-title{
 
 .course-sidebar a:hover {
     background-color: #4f46e5;
+    cursor: pointer;
     color: #fff;
     transform: translateX(5px);
+}
+
+#selected {
+    background-color: #4f46e5;
+    color: #fff;
 }
 
 /*======= RESPONSIVE =======*/

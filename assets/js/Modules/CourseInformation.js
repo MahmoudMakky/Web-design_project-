@@ -1,4 +1,6 @@
 import { getCourse } from "./courseSystem.js";
+import { CourseFeedback } from "./CourseFeedback.js";
+
 export const CourseInformation = {
   videosURL: "assets/video/dataStructure/mp4/",
   courseVideos: [ // key: courseid, value: array of videos URL --- But since no backend i will temporary set all courses to view same vids as an array
@@ -34,7 +36,7 @@ export const CourseInformation = {
   courseInfo(){
     const id = Number(this.getIdFromURL());
     const course = getCourse(id);
-    console.log(id);
+    course.feedback = CourseFeedback.getFeedback(id.toString());
     return course;
   }
 }

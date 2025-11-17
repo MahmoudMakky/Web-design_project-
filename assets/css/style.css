@@ -1237,6 +1237,116 @@ body {
     text-decoration: underline;
 }
 
+
+
+/* ================= profile POPUP ================================================================ */
+.profile__container {
+    position: fixed;
+    inset: 0;
+    background: rgba(17, 24, 39, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    z-index: 1000;
+}
+
+.profile__container.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.profile__box {
+    background: #fff;
+    padding: 2.5rem 2rem;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transform: translateY(-50px);
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.profile__container.active .profile__box {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.profile__close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 1.4rem;
+    color: #4b5563;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+
+.profile__close:hover {
+    color: #1e1b4b;
+}
+
+.profile__title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #1e1b4b;
+    margin-bottom: 0.3rem;
+}
+
+.profile__subtitle {
+    color: #6b7280;
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+}
+
+.admin__btn{
+    width: 100%;
+    padding: 0.9rem;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #4f46e5, #6366f1);
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 0.5rem;
+}
+
+
+.admin__btn:hover {
+    background: linear-gradient(135deg, #4338ca, #4f46e5);
+    transform: translateY(-2px);
+    box-shadow: 0 3px 8px rgba(108, 99, 255, 0.4);
+}
+
+
+
+.logout__btn{
+    width: 100%;
+    padding: 0.9rem;
+    border: none;
+    border-radius: 10px;
+    background: #dc2626;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 0.5rem;
+}
+
+.logout__btn:hover {
+    background: #b91c1c;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 8px rgba(108, 99, 255, 0.4);
+}
+
+
 /*====================== Responsive Styles ======================*/
 
 /* --- Tablets --- */
@@ -2175,3 +2285,36 @@ body.dark-theme .login__btn:hover {
     background: linear-gradient(135deg, #4f46e5, #6366f1);
     box-shadow: 0 3px 8px rgba(99, 102, 241, 0.5);
 }
+
+
+/*================================ Profile Popup==================== */
+
+body.dark-theme .profile__box {
+    background: #1e293b;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-theme .profile__close {
+    color: #94a3b8;
+}
+
+body.dark-theme .profile__title {
+    color: #f8fafc;
+}
+
+body.dark-theme .profile__subtitle {
+    color: #94a3b8;
+}
+
+body.dark-theme .profile__btn {
+    background: linear-gradient(135deg, #6366f1, #4f46e5);
+}
+
+body.dark-theme .profile__btn:hover {
+    background: linear-gradient(135deg, #4f46e5, #6366f1);
+    box-shadow: 0 3px 8px rgba(99, 102, 241, 0.5);
+}
+
+
+
+
