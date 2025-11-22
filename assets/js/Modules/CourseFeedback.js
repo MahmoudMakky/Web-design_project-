@@ -92,7 +92,9 @@ export const CourseFeedback = {
       });
     }
     saveFeedbackData(feedbackData);
-    
+
+   const AddFeedback_XP = 10;
+    updateXP(userId, AddFeedback_XP); 
     return true;
   },
 
