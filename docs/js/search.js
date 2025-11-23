@@ -43,7 +43,7 @@ searchInput.addEventListener("input", () => {
     if (matched.length) {
         matched.forEach(course => {
             const title = course.title;
-            const imgSrc = "assets/img/aaa.png";
+            const imgSrc = "/docs/assets/images/aaa.png";
 
             const item = document.createElement("div");
             item.style.display = "flex";
@@ -66,7 +66,7 @@ searchInput.addEventListener("input", () => {
             }
 
             item.addEventListener("click", () => {
-                window.location.href = `coursepage.html?id=${course.id}`;
+                window.location.href = `/docs/pages/coursepage.html?id=${course.id}`;
             });
 
             suggestionBox.appendChild(item);
@@ -84,9 +84,8 @@ searchInput.addEventListener("blur", () => {
 
 searchInput.addEventListener("keydown", e => {
     if(e.key === "Enter"){
-        let path = "index.html";
         const query = searchInput.value.trim();
-        if (window.location.pathname === "/index.html" || window.location.pathname === "/") {
+        if (window.location.pathname === "/docs/index.html" || window.location.pathname === "/") {
             const section = document.querySelector("#filter");
             if (section) {
                 section.scrollIntoView({ behavior: "smooth" });
@@ -94,9 +93,9 @@ searchInput.addEventListener("keydown", e => {
             }
         }
     if (query) {
-                window.location.href = `index.html?search=${encodeURIComponent(query)}#filter`;
+                window.location.href = `../index.html?search=${encodeURIComponent(query)}#filter`;
             } else {
-                window.location.href = `index.html?#filter`;
+                window.location.href = `../index.html?#filter`;
             }
     }
 })
@@ -104,7 +103,7 @@ searchInput.addEventListener("keydown", e => {
 searchInput.addEventListener("keydown", e => {
     if(e.key === "Enter"){
         const query = searchInput.value.trim();
-        if (window.location.pathname === "/index.html" || window.location.pathname === "/") {
+        if (window.location.pathname === "/docs/index.html" || window.location.pathname === "/") {
             const section = document.querySelector("#filter");
             if (section) {
                 section.scrollIntoView({ behavior: "smooth" });
@@ -112,16 +111,16 @@ searchInput.addEventListener("keydown", e => {
             }
         }
     if (query) {
-                window.location.href = `index.html?search=${encodeURIComponent(query)}#filter`;
+                window.location.href = `../index.html?search=${encodeURIComponent(query)}#filter`;
             } else {
-                window.location.href = `index.html?#filter`;
+                window.location.href = `../index.html?#filter`;
             }
     }
 })
 
 document.getElementById("searchIcon").addEventListener("click", e => {
     const query = searchInput.value.trim();
-    if (window.location.pathname === "/index.html" || window.location.pathname === "/") {
+    if (window.location.pathname === "/docs/index.html" || window.location.pathname === "/") {
         const section = document.querySelector("#filter");
         if (section) {
             section.scrollIntoView({ behavior: "smooth" });
@@ -129,8 +128,8 @@ document.getElementById("searchIcon").addEventListener("click", e => {
         }
     }
     if (query) {
-        window.location.href = `index.html?search=${encodeURIComponent(query)}#filter`;
+        window.location.href = `../index.html?search=${encodeURIComponent(query)}#filter`;
     } else {
-        window.location.href = `index.html?#filter`;
+        window.location.href = `../index.html?#filter`;
     }
 })

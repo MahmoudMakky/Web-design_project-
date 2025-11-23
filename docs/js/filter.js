@@ -24,7 +24,7 @@ function createCourseFilterItem({ title, category, price, duration, id, enrolled
 
     // image
     const img = document.createElement("img");
-    img.src = "assets/img/aaa.png";
+    img.src = "assets/images/aaa.png";
     img.alt = title;
 
     // title
@@ -48,7 +48,7 @@ function createCourseFilterItem({ title, category, price, duration, id, enrolled
     const button = document.createElement("button");
     button.textContent = enrolled ? "Visit" : "Enroll Now";
     button.addEventListener("click", () => {
-        window.location.href = `information.html?id=${id}`;
+        window.location.href = `pages/information.html?id=${id}`;
     });
 
     // append children
@@ -65,7 +65,7 @@ function createCourseFilterItem({ title, category, price, duration, id, enrolled
 function renderFilteredCourses(courseList, page, limit) {
     // Data
     const user = getCurrentUser();
-    const userCourses = user.enrolledCourses
+    const userCourses = getCurrentUser().role!==`student` ? [] : user.enrolledCourses;
 
     const approved = courseList.filter(c => c.status === "Approved");
     const paginationInfo = ExploreSystem.pagination(approved, page, limit);

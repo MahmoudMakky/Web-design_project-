@@ -25,7 +25,7 @@ if(getCurrentUser() != null){
     document.addEventListener("keydown",(e) =>{
         keys[e.key.toLowerCase()] = true;
         if (keys["control"] && keys["alt"] && keys["a"]) {
-            window.location.href=`admin/index.html`;
+            window.location.href=`pages/admin.html`;
         }
     });
   }

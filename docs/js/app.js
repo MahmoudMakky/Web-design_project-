@@ -1,21 +1,21 @@
-import { courseList, createCourse } from "../../assets/js/Modules/courseSystem.js"
-import { deleteCourse } from "../../assets/js/Modules/courseSystem.js"
-import { courseList as Courses } from "../../assets/js/Modules/courseSystem.js"
-import { editCourse } from "../../assets/js/Modules/courseSystem.js"
-import { getUser, listUsers } from "../../assets/js/Modules/userSystem.js"
-import { CourseFeedback } from "../../assets/js/Modules/CourseFeedback.js"
-import { register } from "../../assets/js/Modules/userSystem.js"
-import { getCurrentUser } from "../../assets/js/Modules/userSystem.js"
-import { logout } from "../../assets/js/Modules/userSystem.js"
-import { ExploreSystem } from"../../assets/js/Modules/ExploreSystem.js"
-import { getCourse } from "../../assets/js/Modules/courseSystem.js"
+import { courseList, createCourse } from "./Modules/courseSystem.js"
+import { deleteCourse } from "./Modules/courseSystem.js"
+import { courseList as Courses } from "./Modules/courseSystem.js"
+import { editCourse } from "./Modules/courseSystem.js"
+import { getUser, listUsers } from "./Modules/userSystem.js"
+import { CourseFeedback } from "./Modules/CourseFeedback.js"
+import { register } from "./Modules/userSystem.js"
+import { getCurrentUser } from "./Modules/userSystem.js"
+import { logout } from "./Modules/userSystem.js"
+import { ExploreSystem } from"./Modules/ExploreSystem.js"
+import { getCourse } from "./Modules/courseSystem.js"
 
 if(getCurrentUser() != null){
   if(getCurrentUser().role != `admin`){
-    window.location.href=`../errorpage.html`
+    window.location.href=`errorpage.html`
   }
 }else{
-  window.location.href=`../errorpage.html`
+  window.location.href=`errorpage.html`
 }
 
 // Shortcut to homepage. 
@@ -223,14 +223,8 @@ function renderAdminPage(){
   students.filter((v) => v.role == `student`).forEach(user => {
     
     const coursesListt = user.enrolledCourses
-      .map(id => {
-        try{
-          `${id} -> ${getCourse(id).title}`
-        }catch(e){
-          
-        }
-      })
-      .join('<br>');
+    .map(id => `${id} -> ${getCourse(id).title}`)
+    .join('<br>');
       
       
     const tr = document.createElement('tr');
@@ -257,7 +251,7 @@ function renderAdminPage(){
         <td>${
           (function(){
             try{
-              price = getCourse(index).price 
+              return getCourse(index).price 
             }catch(e){
               console.warn("Too bad broo..")
             }
@@ -624,7 +618,7 @@ document.addEventListener("click", (e) =>{
     const courseId = parseInt(e.target.getAttribute('data-id'));
     const course = courseList.find((course) => courseId === course.id);
     if (course) {
-      window.location.href=`/Web-design_project-/information.html?id=${courseId}`
+      window.location.href=`information.html?id=${courseId}`
       debouncedRender()
     }
   }
@@ -731,7 +725,7 @@ const logoutButton = document.getElementById('logout-button');
 logoutButton.addEventListener('click', () => {
     logout();
     alert(`Logout Successful.`);
-    window.location.href = `../login.html`
+    window.location.href = `login.html`
 });
 
 /* Settings */

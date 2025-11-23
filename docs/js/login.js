@@ -22,17 +22,17 @@ function submittingInfo(){
   }
 
   if(getCurrentUser().role === `admin`){
-    window.location.href = "admin/index.html"
+    window.location.href = "admin.html"
     return
   }
-  window.location.href = "index.html";
+  window.location.href = "../index.html";
   return
 }
 
 
 
 if(getCurrentUser() != null){
-  window.location.href = `index.html`;
+  window.location.href = `../index.html`;
 }
 
 document.getElementById('login-email').addEventListener("keydown",(e) =>{

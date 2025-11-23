@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // close register form.
   if (registerClose) {
     registerClose.addEventListener('click', () => {
-      window.location.href = 'index.html';
+      window.location.href = '../index.html';
     });
   }
 

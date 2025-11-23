@@ -20,7 +20,7 @@ function createCourseItem({category, title, description, id, enrolled}) {
 
     // IMG
     const img = document.createElement("img");
-    img.src = "assets/img/aaa.png";
+    img.src = "assets/images/aaa.png";
     img.alt = "course image";
     img.className = "course-image";
     img.dataset.category = category;
@@ -37,7 +37,7 @@ function createCourseItem({category, title, description, id, enrolled}) {
     // Button
     const a = document.createElement("a");
     //a.href = `coursepage.html?id=${id}`; takes you to a video
-    a.href = `information.html?id=${id}`
+    a.href = `pages/information.html?id=${id}`
     a.className = "button";
     a.textContent = enrolled ? "Visit" : "Enroll Now";
 
@@ -53,7 +53,7 @@ function createCourseItem({category, title, description, id, enrolled}) {
 function renderCourses(courses){
     // Data
     const user = getCurrentUser();
-    const userCourses = user.enrolledCourses
+    const userCourses = getCurrentUser().role!==`student` ? [] : user.enrolledCourses;
 
     // Rendering
     for (const course of courses){
