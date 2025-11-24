@@ -79,8 +79,8 @@ function renderFilteredCourses(courseList, page, limit) {
         const element = createCourseFilterItem({
             category: c.category,
             title: c.title,
-            price: `${c.price}$`,
-            duration: `${c.duration} Weeks`,
+            price: `${+c.price}$`,
+            duration: `${+c.duration} Weeks`,
             id: c.id,
             enrolled: userCourses.includes(c.id)
         });

@@ -169,7 +169,7 @@ function renderAdminPage(){
       <td>${c.id}</td>
       <td>${c.title}</td>
       <td>${c.category}</td>
-      <td>${c.price}$</td>
+      <td>${Number(c.price)}$</td>
       <td>${c.students.length}</td>
       <td class="ri-star-fill" style="color:gold"> ${CourseFeedback.getAverageRating(c.id)}</td>
       <td class="status status-${c.status.toLowerCase()}">${c.status}</td>

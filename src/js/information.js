@@ -111,10 +111,10 @@ function loadInformationPage(){
   title.innerHTML=`${information.title}`
   description.innerHTML=`${information.description}`
   details.instructor.innerHTML=`${information.instructor}`
-  details.duration.innerHTML=`${information.duration} Weeks`
+  details.duration.innerHTML=`${+information.duration} Weeks`
   details.videos.innerHTML=`5` // Temp for now.
   details.language.innerHTML=`English` // Temp for now.
-  details.price.innerHTML=`$ ${information.price}`
+  details.price.innerHTML=`$ ${+information.price}`
   details.level.innerHTML=`${information.category}`
 }
 
